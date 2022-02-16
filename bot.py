@@ -164,10 +164,8 @@ def favs(max):
     for favorite in tweepy.Cursor(api.get_favorites).items(max):##selecciona los X ultimos favs 
         
         stat = api.get_status(favorite.id,tweet_mode="extended") 
-
         ##EN CASO DE TENER VIDEO: guarda el url del video
         vidcheck = False
-
         try:
             vidurl = stat.extended_entities["media"][0]["video_info"]["variants"][1]["url"]
             if "container=fmp4" in vidurl:
@@ -186,18 +184,14 @@ def favs(max):
             stat = stat.replace(i,"")
             
         stat = stat.replace("@","")
-
         media = favorite.entities.get('media', [])
 
         if(len(media) > 0):##busca si hay imagen
-
-            #si existe video, lo cambia como media
-            
+            #si existe video, lo cambia como media           
             if not vidcheck:
                 media = favorite.entities['media'][0]['media_url']
             else:
-                media = vidurl
-                
+                media = vidurl             
             try:
                 wget.download(media,joseo_favs_dir)##guardamos imagenes en imgtxt
             except FileNotFoundError:
@@ -206,10 +200,8 @@ def favs(max):
                     wget.download(media,joseo_favs_dir)
                 except:
                     pass
-
             if len(stat) == 0:
                 stat = "\n"
-
             tuit = str(stat)+"_PIC_"+media##saca la imagen real y la concatena al tuit
         else:
             tuit = str(stat)
@@ -238,7 +230,7 @@ if opt == "s":
 
 print("horario")
 #DEBUG
-picRandomizer()
+#picRandomizer()
 
 ##HORARIOS
 schedule.every().day.at("10:30").do(picRandomizer)

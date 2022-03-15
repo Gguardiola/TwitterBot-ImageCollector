@@ -1,0 +1,4 @@
+2022-03-01 08:15:43,569 ERROR ERROR: [Errno 2] No such file or directory: 'asd.txt'
+2022-03-01 08:16:44,127 ERROR [Errno 2] No such file or directory: 'asd.txt'
+2022-03-02 15:00:02,449 ERROR 400 Bad Request
+324 - Duration too long, maximum:30000, actual:44999 (MediaId: snf:1499036807798865924)
